@@ -84,7 +84,7 @@
         100% { transform: translateX(0); }
     }
 
-    /* ---------- HIDDEN CONTENT ---------- */
+    /* ---------- MAIN CONTENT ---------- */
     #mainContent {
         display: none;
         animation: fadeIn 1.2s ease;
@@ -95,7 +95,7 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- PHONE UI ---------- */
+    /* ---------- PHONE FRAME ---------- */
     .phone-frame {
         width: 100%;
         max-width: 460px;
@@ -106,11 +106,6 @@
         background: transparent;
         border-radius: 30px;
         position: relative;
-        perspective: 1000px; /* tilt effect */
-    }
-
-    /* Smooth scrolling */
-    .phone-frame {
         -webkit-overflow-scrolling: touch;
     }
 
@@ -124,7 +119,7 @@
         box-shadow:
             0 8px 28px rgba(0,0,0,0.12),
             0 0 25px rgba(255, 84, 150, 0.18);
-        transition: transform 0.2s ease-out;
+        transition: 0.2s;
     }
 
     video {
@@ -132,7 +127,7 @@
         border-radius: 18px;
     }
 
-    /* ---------- LETTER SECTION ---------- */
+    /* ---------- FUTURE LETTER ---------- */
     #futureLetter {
         display: none;
         background: #ffe3f4;
@@ -184,15 +179,6 @@
         100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
     }
 
-    /* ---------- ENVELOPE BEHIND CARD ---------- */
-    .envelope-bg {
-        background: url('data:image/svg+xml;utf8,<svg width="200" height="120" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 200,0 100,70" fill="%23ffd1e8"/><rect y="70" width="200" height="50" fill="%23ffe3f4"/></svg>');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        padding-top: 65px;
-        border-radius: 25px;
-    }
-
 </style>
 </head>
 
@@ -225,22 +211,21 @@
         setInterval(spawnHeart, 800);
     </script>
 
-    <div class="phone-frame" id="tiltArea">
+    <div class="phone-frame">
 
-        <p style="margin-top: 15px; font-size: 15px; color: #555;">
-                Hand in hand. You & me. Today, tomorrow & forever.
-        </p>
-
-        <!-- CARD 1 — VIDEO SECTION -->
-        <div class="content-card tilt">
+        <!-- CARD 1 — VIDEO -->
+        <div class="content-card">
             <video controls>
-                <source src="qrtrial.mp4" type="video/mp4" />
+                <source src="your-video.mp4" type="video/mp4" />
             </video>
 
+            <p style="margin-top: 15px; font-size: 15px; color: #555;">
+                Hand in hand. You & me. Today, tomorrow & forever.
+            </p>
         </div>
 
-        <!-- CARD 2 — LOVE MESSAGE SECTION WITH ENVELOPE -->
-        <div class="content-card envelope-bg tilt">
+        <!-- CARD 2 — LOVE MESSAGE -->
+        <div class="content-card">
             <h4 style="color:#ff5fa2; letter-spacing:2px; text-align:center;">MY LOVE</h4>
 
             <h1 style="margin-top: 5px; text-align:center;">
@@ -289,17 +274,6 @@ function openLetter() {
     letter.style.display =
         letter.style.display === "block" ? "none" : "block";
 }
-
-/* TILT EFFECT */
-document.addEventListener("mousemove", (e) => {
-    const cards = document.querySelectorAll(".tilt");
-    const x = (window.innerWidth / 2 - e.clientX) / 40;
-    const y = (window.innerHeight / 2 - e.clientY) / 40;
-
-    cards.forEach(card => {
-        card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-    });
-});
 </script>
 
 </body>
